@@ -24,7 +24,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @ContextConfiguration(locations = {"classpath:META-INF/spring/batch-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class HelloSpringBatchTests {
+public class HelloSpringBatchTest {
 
 	@Autowired
 	private Job job;
