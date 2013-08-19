@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config/>
+
+	<bean class="org.springframework.batch.samples.hello.CommonConfig"/>
+
+	<bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository"/>
+	</bean>
+
+	<batch:job-repository id="jobRepository" data-source="dataSource"/>
+
+	<batch:job id="helloSpringBatchJob">
+		<batch:step id="helloSpringBatchStep">
+			<batch:tasklet ref="helloSpringBatchTasklet" />
+		</batch:step>
+	</batch:job>
+
+	<bean id="helloSpringBatchTasklet" class="org.springframework.batch.samples.hello.HelloSpringBatchTasklet" />
+
+</beans>
